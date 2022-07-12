@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: clamp(30px, 8vw, 80px);
+    text-align: center;
+    padding: calc(30px + 1vmin) 10px;
+}
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    &>.grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-auto-rows: auto;
+        grid-gap: 10px;
+        &>.card{
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba($color: #212121, $alpha: 0.5);
+            transform: translateY(-10px);
+            opacity: 0;
+            animation: fade-in 0.4s ease-out forwards;
+            & h2{
+                font-size: 20px;
+            }
+        }
+    }
+}
+.watcher{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &>.loading{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        text-align: center;
+        line-height: 100px;
+        &::after{
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: #212121 solid 4px;
+            border-radius: 50%;
+            border-bottom: none;
+            border-right: none;
+            border-left: none;
+            animation: loading-rotate 2s ease infinite;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: #212121 solid 4px;
+            border-radius: 50%;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            animation: loading-rotate 1s ease infinite;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+    }
+}
+.btn-up{
+    position: fixed;
+    right: 70px;
+    bottom: 70px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba($color: #7b7b7b, $alpha: 0.5);
+}
+@keyframes fade-in {
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes loading-rotate {
+    to{
+        transform: translateX(-50%) rotateZ(360deg)
+    }
+}
